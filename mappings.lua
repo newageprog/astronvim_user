@@ -1,3 +1,6 @@
+vim.api.nvim_set_keymap("!", "<C-s>", "<C-o>:w<cr>", { noremap = true })
+vim.api.nvim_set_keymap("!", "<C-ы>", "<C-o>:w<cr>", { noremap = true })
+-- vim.api.nvim_set_keymap("!", "<C-q>", "<cmd>q<cr>", { noremap = true })
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
 -- Please use this mappings table to set keyboard mapping since this is the
@@ -11,21 +14,27 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(
-          bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(
+          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+        )
       end,
       desc = "Pick to close",
     },
-    ["<leader>bu"] = { "<cmd>tabnew<cr><cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc =
-    "Open User Config for AstroNvim" },
+    ["<leader>bu"] = {
+      "<cmd>e ~/.config/nvim/lua/user/init.lua<cr><cmd>Neotree dir=~/.config/nvim/lua/user<cr>",
+      desc = "Open User Config for AstroNvim",
+    },
+    ["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", desc = "Toggle markdown preview" },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
+    ["save"] = {},
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    ["C-q"] = false,
   },
 }
